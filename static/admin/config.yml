@@ -10,6 +10,7 @@ collections:
     label: "Categories"
     folder: "src/data/categories"
     create: true
+    identifier_field: "category"
     fields:
       - {label: "Category", name: "category", widget: "string"}
       - {label: "Category Image", name: "category-image", widget: "image"}
@@ -18,6 +19,7 @@ collections:
     label: "Dietary Tags"
     folder: "src/data/tags"
     create: true
+    identifier_field: "tag"
     fields:
       - {label: "Dietary Tag", name: "tag", widget: "string"}
       - {label: "Description", name: "description", widget: "text"}
