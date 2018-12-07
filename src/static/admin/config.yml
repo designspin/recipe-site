@@ -1,0 +1,62 @@
+backend:
+  name: github
+  repo: designspin/recipe-site
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "categories"
+    label: "Categories"
+    folder: "src/data/categories"
+    create: true
+    fields:
+      - {label: "Category", name: "category", widget: "string"}
+      - {label: "Category Image", name: "category-image", widget: "image"}
+      - {label: "About This Category", name: "category-about", widget: "markdown"}
+  - name: "dietary"
+    label: "Dietary Tags"
+    folder: "src/data/tags"
+    create: true
+    fields:
+      - {label: "Dietary Tag", name: "tag", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+  - name: "recipe"
+    label: "Recipe"
+    folder: "src/data/recipes"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: "Category"
+        name: "category"
+        widget: "relation"
+        collection: "categories"
+        searchFields: ["category"]
+        valueField: "category"
+        displayFields: ["category"]
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Description", name: "description", widget: "markdown"}
+      - {label: "Prep Time", name: "prep-time", widget: "string"}
+      - {label: "Cook Time", name: "cook-time", widget: "string"}
+      - label: "Dietary List"
+        name: "dietary-suitability-list"
+        widget: "list"
+        fields:
+          - label: "Dietary Item"
+            name: "dietary-suitability-item"
+            widget: "relation"
+            collection: "dietary"
+            searchFields: ["tag"]
+            valueField: "tag"
+            displayFields: ["tag"]
+      - label: "Ingredients"
+        name: "ingredients"
+        widget: "list"
+        fields:
+          - label: "Ingredient"
+            name: "ingredient"
+            widget: "object"
+            fields:
+              - {label: "Qty/Measure", name: "qty", widget: string}
+              - {label: "Ingredient Name", name: "name", widget: string}
+      - {label: "method", name: "method", widget: "markdown"}
